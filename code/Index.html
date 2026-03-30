@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aumônerie Diocésaine des Jeunes de Douala</title>
+  <style>
+    body { font-family: "Segoe UI", sans-serif; margin: 0; padding: 0; background: #eef2f7; overflow-x: hidden; }
+  
+
+    /* --- HEADER --- */
+    header { 
+      background: linear-gradient(135deg, #045286, #0072a8); 
+      color: white; padding: 15px 30px; 
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 4px solid #7cfc00;
+    }
+    .logo-rond { width: 100px; height: 100px; border-radius: 50%; border: 3px solid #7cfc00; object-fit: cover; background: #fff; flex-shrink: 0; }
+    header h1 { font-size: 1.8em; text-transform: uppercase; margin: 0; }
+    
+    /* --- NAV --- */
+    nav { background: #ffffff; padding: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 10; }
+    nav ul { margin: 0; padding: 0; display: flex; list-style: none; justify-content: center; flex-wrap: wrap; }
+    nav li { margin: 10px 15px; }
+    nav a { color: #004a7c; font-weight: bold; text-decoration: none; transition: 0.3s; padding: 8px 15px; }
+    nav a:hover { color: #fff; background-color: #045286; border-radius: 4px; }
+
+    /* --- BOUTON DON ANIMÉ --- */
+    .btn-don {
+      position: fixed; left: 15px; bottom: 30px; z-index: 100;
+      background: #7cfc00; color: #045286; padding: 15px 20px; border-radius: 50px;
+      text-decoration: none; font-weight: 800; font-size: 0.85em; text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3); border: 2px solid white;
+      animation: pulseDon 2s infinite;
+    }
+    @keyframes pulseDon { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+    /* --- HERO & BOUTON INSCRIPTION HOVER --- */
+    .hero { 
+      height: 520px; position: relative; 
+      display: flex; flex-direction: row; justify-content: space-between; align-items: center;
+      color: white; overflow: hidden; padding: 0 80px;
+    }
+    .carousel-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; animation: backgroundSlide 15s infinite; }
+    @keyframes backgroundSlide {
+      0% { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/images (1).jpeg') }
+      50% { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/images (2).jpeg'); }
+      100% { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/images (1).jpeg'); }
+    }
+    
+    .btn-inscription {
+      padding: 18px 45px; font-size: 1.1em; font-weight: 800; color: #fff;
+      background-color: #7cfc00; border: none; border-radius: 50px; cursor: pointer;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-decoration: none; display: inline-block;
+    }
+    /* HOVER BOUTON INSCRIPTION */
+    .btn-inscription:hover {
+      transform: scale(1.1) translateY(-5px);
+      background-color: #6ee400;
+      box-shadow: 0 15px 30px rgba(124, 252, 0, 0.4);
+      letter-spacing: 1px;
+    }
+
+    .floating-box { 
+      width: 320px; background: #fff; padding: 15px; border-radius: 15px; 
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4); border: 1px solid #eee; text-align: center;
+      z-index: 2; color: #333; margin-left: 40px;
+    }
+    .img-carre { width: 100%; height: 320px; object-fit: cover; border-radius: 10px; margin-bottom: 12px; }
+    .mot-titre { font-weight: 800; color: #045286; font-size: 1em; display: block; }
+
+    /* --- PHOTOTHÈQUE SOBRE --- */
+    .phototheque { height: 300px; width: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #000; }
+    .photo-slide { position: absolute; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; animation: photoFade 12s infinite; }
+    .photo-slide:nth-child(2) { animation-delay: 4s; }
+    .photo-slide:nth-child(3) { animation-delay: 8s; }
+    @keyframes photoFade { 0%, 100% { opacity: 0; } 10%, 33% { opacity: 0.6; } 43% { opacity: 0; } }
+    .photo-caption { position: relative; color: white; font-size: 1.2em; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; z-index: 2; border-top: 1px solid #7cfc00; border-bottom: 1px solid #7cfc00; padding: 10px 20px; }
+
+    /* --- GRILLES ÉQUITABLES (3 BLOCS PAR LIGNE) --- */
+    .section { padding: 50px 30px; background: white; margin: 40px auto; max-width: 1100px; border-radius: 12px; }
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); /* Force 3 colonnes égales */
+      gap: 25px; 
+    }
+    .section { padding: 40px 20px; max-width: 1100px; margin: 0 auto; }
+    .section-title { font-size: 1.5em; color: #045286; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; border-left: 4px solid #045286; padding-left: 15px; }
+    
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    
+    .card { 
+      background: white; padding: 25px; border-radius: 4px; text-decoration: none; color: #045286; 
+      font-weight: 700; text-align: center; transition: 0.3s;
+      border: 1px solid #e0e6ed; box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+      display: flex; align-items: center; justify-content: center; min-height: 60px;
+    }
+
+    /* Indicateurs colorés discrets pour le repérage */
+    .section-apropos .card { border-bottom: 3px solid #045286; }
+    .section-enfance .card { border-bottom: 3px solid #7cfc00; }
+    .section-jeunesse .card { border-bottom: 3px solid #0072a8; }
+
+    .card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); background: #fcfdfe; }
+
+    /* --- ACTUALITÉS DÉFILANTES AVEC IMAGES & HOVER --- */
+    .actus-wrapper { overflow: hidden; width: 100%; padding: 40px 0; background: #f0f4f8; }
+    .actus-container-scroll { 
+      display: flex; gap: 30px; width: max-content;
+      animation: autoScroll 35s linear infinite;
+    }
+    .actus-container-scroll:hover { animation-play-state: paused; }
+    
+    @keyframes autoScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .card-actu {
+      width: 350px; background: white; border-radius: 15px; overflow: hidden;
+      display: flex; flex-direction: column; height: 450px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #e1e8ed;
+      transition: all 0.5s ease;
+    }
+    /* HOVER CARD ACTU DURANT LE SCROLL */
+    .card-actu:hover {
+      transform: translateY(-15px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      border-color: #7cfc00;
+      z-index: 5;
+    }
+    .card-actu img { width: 100%; height: 230px; object-fit: cover; transition: 0.5s; }
+    .card-actu:hover img { transform: scale(1.1); filter: brightness(1.1); }
+    .actu-content { padding: 20px; flex-grow: 1; }
+
+    footer { background: #01395c; color: white; padding: 40px; text-align: center; border-top: 5px solid #7cfc00; }
+
+    @media (max-width: 950px) {
+      .hero { flex-direction: column; height: auto; padding: 40px 20px; }
+      .floating-box { margin-top: 30px; width: 90%; margin-left: 0; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="don.html" class="btn-don">🏗️ DON POUR LA CONSTRUCTION </br> DU CENTRE DIOCÉSAIN DES JEUNES </a>
+
+<header>
+  <img src="../images/logo formation.jpeg" alt="Logo" class="logo-rond">
+  <marquee scrollamount="6"><h1>Aumônerie Diocésaine Jeunesse & Enfance – Archidiocèse de Douala</h1></marquee>
+  <img src="../images/logo nj.jpeg" alt="Logo" class="logo-rond">
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#enfance">Enfance</a></li>
+    <li><a href="#jeunesse">Jeunesse</a></li>
+    <li><a href="#actus">Actualités</a></li>
+  </ul>
+</nav>
+
+<section id="accueil" class="hero">
+  <div class="carousel-bg"></div>
+  <div class="hero-content">
+    <h2 style="font-size: 3em; margin-bottom: 10px;">Bienvenue dans le portail l’Aumônerie des Jeunes</h2>
+    <p style="font-size: 1.2em; margin-bottom: 35px;">Thème de l'année :  Formation intégrale des jeunes et Emploi dans la société</p>
+    <a href="https://bit.ly/NDJ2026" class="btn-inscription">✨ S'INSCRIRE AUX ACTIVITÉS</a>
+  </div>
+
+  <div class="floating-box">
+    <img src="../images/aumonier.jpg" alt="Aumônier" class="img-carre">
+    <span class="mot-titre"><a href="mot.html">MOT DE L'AUMONIER DIOCÉSAIN</a></span>
+  </div>
+</section>
+
+<section id="apropos" class="section section-apropos">
+  <h2 class="section-title">À propos de l'Aumônerie</h2>
+  <div class="grid">
+    <a href="Mission Pastorale.html" class="card">MISSION PASTORALE</a>
+    <a href="Histoire & fondements.html" class="card">HISTOIRE & FONDEMENTS</a>
+    <a href="Equipe pastorale.html" class="card">ÉQUIPE DIOCÉSAINE</a>
+  </div>
+</section>
+
+<section id="enfance" class="section section-enfance">
+  <h2 class="section-title">Pastorale de l’Enfance</h2>
+  <div class="grid">
+    <a href="Eveil à la foi.html" class="card">ÉVEIL À LA FOI</a>
+    <a href="groupes.html" class="card">CATÉCHÈSE & GROUPES</a>
+    <a href="activites.html" class="card">CALENDRIER ANNUEL</a>
+  </div>
+</section>
+
+<section id="jeunesse" class="section section-jeunesse">
+  <h2 class="section-title">Pastorale de la Jeunesse</h2>
+  <div class="grid">
+    <a href="mouvements.html" class="card">MOUVEMENTS & GROUPES</a>
+    <a href="formations.html" class="card">FORMATION & LEADERSHIP</a>
+    <a href="engagements.html" class="card">PROJETS & ENGAGEMENTS</a>
+  </div> 
+</section>
+
+<section id="actus" class="actus-wrapper">
+    <h2 style="text-align: center; color: #045286; margin-bottom: 30px;">ACTUALITÉS DIOCÉSAINES</h2>
+    <div class="actus-container-scroll">
+        <div class="card-actu">
+            <img src="../images/whatsApp Image 2026-02-01 at 08.22.20.jpeg" alt="Nuit des jeunes">
+            <div class="actu-content"><h4>Nuit des Jeunes 2026</h4><p>Préparez-vous pour une nuit de louange exceptionnelle.</p><a href="actu01.html" style="color:#0072a8; font-weight:bold; text-decoration:none;">Lire la suite →</a></div>
+        </div>
+        <div class="card-actu">
+            <img src="../images/zone.png" alt="Zones">
+            <div class="actu-content"><h4>Zones Pastorales</h4><p>Découvrez votre zone et vos responsables de secteur.</p><a href="annonce2.html" style="color:#0072a8; font-weight:bold; text-decoration:none;">Voir la carte →</a></div>
+        </div>
+        <div class="card-actu">
+            <img src="../images/IMG-20260205-WA0033.jpg" alt="Carême">
+            <div class="actu-content"><h4>Chemin de Carême</h4><p>Suivez notre programme spécial pour ces 40 jours.</p><a href="annonce3.html" style="color:#0072a8; font-weight:bold; text-decoration:none;">Le guide ici →</a></div>
+        </div>
+        <div class="card-actu">
+            <img src="../images/CamScanner 2026-02-06 15.58_1 (1).jpg" alt="Leadership">
+            <div class="actu-content"><h4>Projet de Construction du Centre Diocesain des Jeunes</h4><p>Participez à la construction d'un centre d'insertion et de professionalisme au service des jeunes du Cameroun.</p><a href="don.html" style="color:#0072a8; font-weight:bold; text-decoration:none;">Infos →</a></div>
+        </div>
+        <div class="card-actu">
+            <img src="../images/jubile.jpg" alt="Enfance">
+            <div class="actu-content"><h4>Jubilé de Platine</h4><p>Notre Archidiocèse célèbrera sept décénies d'existences le Samedi 14 Mars 2026.</p><a href="jubile.html" style="color:#0072a8; font-weight:bold; text-decoration:none;">Plus de détails →</a></div>
+        </div>
+        <div class="card-actu">
+            <img src="../images/Screenshot 2026-02-06 173106.png" alt="Pèlerinage">
+            <div class="actu-content"><h4>Pèlerinage annuel</h4><p>Inscriptions ouvertes pour le grand départ.</p><a href="pelerinage.html" style="color:#0072a8; font-weight:bold; text-decoration:none;">S'inscrire →</a></div>
+        </div>
+        <div class="card-actu">
+            <img src="../images/whatsApp Image 2026-02-06 at 13.06.47.jpeg" alt="Social">
+            <div class="actu-content"><h4>Notre spiritualité tournée vers le Bienheureux Carlos Acutis</h4><p>A la suite du jeune Carlos, nous nous mettons sur l'autoroute de l'Eucharistie.</p><a href="carlos.html" style="color:#0072a8; font-weight:bold; text-decoration:none;">Voir tout →</a></div>
+        </div>
+        <div class="card-actu">
+            <img src="../images/whatsApp Image 2026-02-01 at 08.22.20.jpeg" alt="Nuit des jeunes">
+            <div class="actu-content"><h4>Nuit des Jeunes 2026</h4><p>Préparez-vous pour une nuit de louange exceptionnelle.</p><a href="actu01.html" style="color:#0072a8; font-weight:bold; text-decoration:none;">Lire la suite →</a></div>
+        </div>
+    </div>
+</section>
+
+<section id="activites" class="phototheque">
+  <div class="photo-slide" style="background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1400');"></div>
+  <div class="photo-slide" style="background-image: url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1400');"></div>
+  <div class="photo-slide" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1400');"></div>
+  <div class="photo-caption">Photothèque Diocésaine</div>
+</section>
+
+<footer>
+  <p>© BIG DATA CENTER AI By <a href="https://www.youtube.com/@DominiqueSavio_Cyber-Ap%C3%B4tre3.0">Dominique Savio - Cyber Apôtre 3.0 </a></br>Aumônerie Diocésaine Jeunesse & Enfance – Douala</p>
+</footer>
+
+</body>
+</html>
